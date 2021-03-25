@@ -5,7 +5,7 @@ metadata:
   name: random-generator
 spec:
   # More than 1 replica is required for a rolling update
-  replicas: 3
+  replicas: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:
