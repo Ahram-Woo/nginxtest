@@ -1,0 +1,59 @@
+apiVersion: route.openshift.io/v1	
+kind: Route	
+metadata:	
+  annotations:	
+    openshift.io/host.generated: 'true'	
+  labels:	
+    argocd.argoproj.io/instance: livenessprobe	
+  managedFields:	
+    - apiVersion: route.openshift.io/v1	
+      fieldsType: FieldsV1	
+      fieldsV1:	
+        'f:metadata':	
+          'f:labels':	
+            .: {}	
+            'f:argocd.argoproj.io/instance': {}	
+        'f:spec':	
+          'f:port':	
+            .: {}	
+            'f:targetPort': {}	
+          'f:to':	
+            'f:kind': {}	
+            'f:name': {}	
+            'f:weight': {}	
+          'f:wildcardPolicy': {}	
+      manager: Mozilla	
+      operation: Update	
+      time: '2021-03-25T05:29:44Z'	
+    - apiVersion: route.openshift.io/v1	
+      fieldsType: FieldsV1	
+      fieldsV1:	
+        'f:status':	
+          'f:ingress': {}	
+      manager: openshift-router	
+      operation: Update	
+      time: '2021-03-25T05:29:44Z'	
+  name: random-generator	
+  namespace: wp-test	
+  resourceVersion: '97807872'	
+  selfLink: /apis/route.openshift.io/v1/namespaces/wp-test/routes/random-generator	
+  uid: fcdb8e00-2f21-41e1-976f-157142511092	
+spec:	
+  host: random-generator-wp-test.apps.tex.c.widerlab.io	
+  port:	
+    targetPort: 8080	
+  to:	
+    kind: Service	
+    name: random-generator	
+    weight: 100	
+  wildcardPolicy: None	
+status:	
+  ingress:	
+    - conditions:	
+        - lastTransitionTime: '2021-03-25T05:29:44Z'	
+          status: 'True'	
+          type: Admitted	
+      host: random-generator-wp-test.apps.tex.c.widerlab.io	
+      routerCanonicalHostname: apps.tex.c.widerlab.io	
+      routerName: default	
+      wildcardPolicy: None
