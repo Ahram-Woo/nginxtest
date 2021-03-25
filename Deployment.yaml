@@ -1,36 +1,19 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Pod
 metadata:
-  labels:
-    app: demo
-  name: demo
+  name: pod-with-liveness-check
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: demo
-  strategy: {}
-  template:
-    metadata:
-      labels:
-        app: demo
-    spec:
-      containers:
-      - image: dhkang222/kubernetes-spring:demo
-        name: kubernetes-spring
+  containers:
+    - image: k8spatterns/random-generator:1.0
+      name: random-generator
+      env:
+        - name: DELAY_STARTUP
+          value: "20"
         ports:
-          - name: demo-svc-8080
-            containerPort: 8080
-            protocol: TCP
-        livenessProbe:
+        - containerPort: 8080
+          protocol: TCP
+          livenessProbe:
           httpGet:
             path: /actuator/health
-            port: demo-svc-8080
-        readinessProbe:
-          httpGet:
-            path: /actuator/health
-            port: demo-svc-8080
-        startupProbe:
-          httpGet:
-            path: /actuator/health
-            port: demo-svc-8080
+            port: 8080
+          initialDelaySeconds: 30
