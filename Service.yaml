@@ -3,7 +3,10 @@ kind: Service
 metadata:
   name: pod-with-liveness-check
 spec:
+  selector:
+    app: pod-with-liveness-check
   ports:
   - port: 8080
     protocol: TCP
     targetPort: 8080
+  type: NodePort
